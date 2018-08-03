@@ -1,0 +1,8 @@
+Sources:
+	https://docs.spring.io/spring-boot/docs/current/reference/html/howto-traditional-deployment.html
+	https://thepracticaldeveloper.com/2017/09/02/how-to-deploy-a-spring-boot-war-in-wildfly-jboss/
+
+Steps (in short):
+1. Application extends SpringBootServletInitializer
+2. <packaging>war</packaging>
+3. <artifactId>spring-boot-starter-tomcat</artifactId><scope>provided</scope>

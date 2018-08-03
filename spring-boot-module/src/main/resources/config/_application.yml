@@ -1,0 +1,23 @@
+#environments:
+#   dev:
+#      url: http://dev.example.com
+#      name: Developer Setup
+#   prod:
+#      url: http://another.example.com
+#      name: My Cool App
+
+#server:
+#   address: 192.168.1.100
+---
+#spring:
+#   profiles: development
+#server:
+#   address: 127.0.0.1
+---
+#spring:
+#   profiles: production
+#server:
+#   address: 192.168.1.120
+
+server:
+    port: 9999
