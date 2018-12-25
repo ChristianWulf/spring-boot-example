@@ -1,0 +1,148 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>chw.tutorial</groupId>
+		<artifactId>spring-boot-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>spring.boot.example.ldap</artifactId>
+
+	<dependencies>
+		<!-- #################### -->
+		<!-- SPRING STARTER DEPENDENCIES -->
+		<!-- #################### -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-ldap</artifactId>
+			<!-- required for: LdapRepository -->
+		</dependency>
+		<!-- Spring Data REST takes the features of Spring HATEOAS and Spring Data 
+			JPA and combines them together automatically. -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.springframework.boot</groupId> -->
+		<!-- <artifactId>spring-boot-starter-data-rest</artifactId> -->
+		<!-- </dependency> -->
+
+		<!-- #################### -->
+		<!-- LDAP DEPENDENCIES -->
+		<!-- #################### -->
+		<dependency>
+			<groupId>org.springframework.ldap</groupId>
+			<artifactId>spring-ldap-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-ldap</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.unboundid</groupId>
+			<artifactId>unboundid-ldapsdk</artifactId>
+		</dependency>
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.directory.server</groupId> -->
+		<!-- <artifactId>apacheds-all</artifactId> -->
+		<!-- <version>1.5.5</version> -->
+		<!-- <scope>test</scope> -->
+		<!-- </dependency> -->
+
+		<!-- #################### -->
+		<!-- OTHER DEPENDENCIES -->
+		<!-- #################### -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<scope>provided</scope>
+			<!-- We need to include the javax.servlet API specs, the implementation 
+				will be provided by Wildfly / JBoss -->
+		</dependency>
+
+		<!-- #################### -->
+		<!-- TESTING DEPENDENCIES -->
+		<!-- #################### -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+			<!-- JUnit: The de-facto standard for unit testing Java applications. -->
+			<!-- Spring Test & Spring Boot Test: Utilities and integration test support 
+				for Spring Boot applications. -->
+			<!-- AssertJ: A fluent assertion library. -->
+			<!-- Hamcrest: A library of matcher objects (also known as constraints 
+				or predicates). -->
+			<!-- Mockito: A Java mocking framework. -->
+			<!-- JSONassert: An assertion library for JSON. -->
+			<!-- JsonPath: XPath for JSON. -->
+		</dependency>
+	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- Inherit defaults from Spring Boot -->
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-parent</artifactId>
+				<version>2.0.5.RELEASE</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>pre-integration-test</id>
+						<goals>
+							<goal>start</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>post-integration-test</id>
+						<goals>
+							<goal>stop</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
