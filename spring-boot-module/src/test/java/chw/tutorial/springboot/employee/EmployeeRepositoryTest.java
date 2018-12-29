@@ -8,20 +8,19 @@ import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-// @DataJpaTest // configuring H2, an in-memory database; performing an
-// @EntityScan; ...
-@SpringBootTest // as alternative to @ContextConfiguration
-//@AutoConfigureTestEntityManager
+@DataJpaTest // configuring H2, an in-memory database; performing an @EntityScan; ...
+// @SpringBootTest // as alternative to @ContextConfiguration
+// @AutoConfigureTestEntityManager
 // @SpringJUnitConfig
-//@AutoConfigureTestDatabase // (replace = Replace.NONE)
+// @AutoConfigureTestDatabase // (replace = Replace.NONE)
 public class EmployeeRepositoryTest {
 
-//	@Autowired
-//	private TestEntityManager entityManager;
+	// @Autowired
+	// private TestEntityManager entityManager;
 
 	@Autowired
 	private EmployeeRepository employeeRepository;

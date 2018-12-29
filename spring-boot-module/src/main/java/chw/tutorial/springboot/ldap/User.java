@@ -3,15 +3,15 @@ package chw.tutorial.springboot.ldap;
 import javax.naming.Name;
 
 import org.springframework.ldap.odm.annotations.Attribute;
-import org.springframework.ldap.odm.annotations.DnAttribute;
 import org.springframework.ldap.odm.annotations.Entry;
 import org.springframework.ldap.odm.annotations.Id;
 
 //@Entry(base = "ou=people,dc=springframework,dc=org", objectClasses = { "top", "person", "organizationalPerson", "inetOrgPerson", })
-@Entry(base = "ou=" + User.GROUP, objectClasses = { "top", "person", "organizationalPerson", "inetOrgPerson", })
+//@Entry(base = "ou=" + User.GROUP, objectClasses = { "top", "person", "organizationalPerson", "inetOrgPerson", })
+@Entry(objectClasses = { "top", "person", "organizationalPerson", "inetOrgPerson", })
 // @Entry(objectClasses = { "top", "person", "organizationalPerson",
 // "inetOrgPerson", })
-public class User {
+public final class User {
 
 	public static final String GROUP = "people";
 
@@ -19,11 +19,12 @@ public class User {
 	private Name dn;
 	@Attribute(name = "cn")
 	private String username;
-	@Attribute(name = "userPassword")
-	private String hashedPassword;
+	@Attribute(name = "userPassword") // type does not work
+	private byte[] hashedPassword;
 
 	@Attribute(name = "uid")
-	@DnAttribute(value = "uid", index = 1)
+	// @DnAttribute(value = "uid")
+	// @Transient
 	private String uid;
 
 	private String group = GROUP;
@@ -56,11 +57,11 @@ public class User {
 		this.username = username;
 	}
 
-	public String getHashedPassword() {
+	public byte[] getHashedPassword() {
 		return hashedPassword;
 	}
 
-	public void setHashedPassword(String hashedPassword) {
+	public void setHashedPassword(byte[] hashedPassword) {
 		this.hashedPassword = hashedPassword;
 	}
 

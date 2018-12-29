@@ -1,4 +1,4 @@
-package chw.tutorial.springboot.ldap;
+package chw.tutorial.springboot.webmodule.controller;
 
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
@@ -16,6 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.ldap.DataLdapTest;
 import org.springframework.ldap.support.LdapUtils;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import chw.tutorial.springboot.ldap.User;
+import chw.tutorial.springboot.ldap.UserRepository;
 
 @RunWith(SpringRunner.class)
 // @ExtendWith(SpringExtension.class)

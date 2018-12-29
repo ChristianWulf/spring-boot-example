@@ -12,11 +12,13 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<maven.compiler.source>8</maven.compiler.source>
-		<maven.compiler.target>8</maven.compiler.target>
+		<maven.compiler.source>9</maven.compiler.source>
+		<maven.compiler.target>9</maven.compiler.target>
 	</properties>
 
 	<modules>
 		<module>spring-boot-webmodule</module>
+		<module>spring-boot-data</module>
+		<module>spring.boot.example.ldap</module>
 	</modules>
 </project>

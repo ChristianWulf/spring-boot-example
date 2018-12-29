@@ -19,9 +19,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 // @ExtendWith(SpringExtension.class)
-// @SpringBootTest()
 @DataLdapTest
-public class UserRepositoryTest {
+public class UserRepository2Test {
 
 	@Autowired
 	UserRepository userRepository;
@@ -50,7 +49,6 @@ public class UserRepositoryTest {
 		assertThat(user.getDn(), is(LdapUtils.newLdapName("uid=bob,ou=people,dc=springframework,dc=org")));
 		assertThat(user.getGroup(), is(User.GROUP));
 		assertThat(user.getUid(), is("bob"));
-		assertThat(user.getHashedPassword(), is("{noop}bobspassword".getBytes()));
 	}
 
 	@Test

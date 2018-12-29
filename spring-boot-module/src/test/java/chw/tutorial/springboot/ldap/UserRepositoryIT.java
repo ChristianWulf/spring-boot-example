@@ -9,19 +9,15 @@ import javax.naming.Name;
 
 import org.junit.Ignore;
 import org.junit.Test;
-//import org.junit.jupiter.api.Test;
-//import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.data.ldap.DataLdapTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.ldap.support.LdapUtils;
-import org.springframework.test.context.junit4.SpringRunner;
 
-@RunWith(SpringRunner.class)
+//@RunWith(SpringRunner.class)
 // @ExtendWith(SpringExtension.class)
-// @SpringBootTest()
-@DataLdapTest
-public class UserRepositoryTest {
+@SpringBootTest()
+//@DataLdapTest
+public class UserRepositoryIT {
 
 	@Autowired
 	UserRepository userRepository;
@@ -50,7 +46,6 @@ public class UserRepositoryTest {
 		assertThat(user.getDn(), is(LdapUtils.newLdapName("uid=bob,ou=people,dc=springframework,dc=org")));
 		assertThat(user.getGroup(), is(User.GROUP));
 		assertThat(user.getUid(), is("bob"));
-		assertThat(user.getHashedPassword(), is("{noop}bobspassword".getBytes()));
 	}
 
 	@Test

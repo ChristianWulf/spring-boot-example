@@ -26,6 +26,7 @@ public class SecurityTestConfiguration extends WebSecurityConfigurerAdapter {
 			.groupSearchBase("ou=groups")
 			.contextSource()	// starts an LDAP server if url is not provided
 				.ldif("classpath:bootstrap-spring-security.ldif")
+				.root("dc=springframework,dc=org")
 				// automatically adds the entry indicated by .root()
 				.and()
 			.passwordCompare()

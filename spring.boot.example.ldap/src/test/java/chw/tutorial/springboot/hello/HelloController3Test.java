@@ -16,15 +16,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.web.context.WebApplicationContext;
 
 import chw.tutorial.springboot.SecurityTestConfiguration;
 
 @RunWith(SpringRunner.class)
-//@SpringBootTest
-//@AutoConfigureMockMvc
-//@AutoConfigureTestEntityManager
-// -------------------------------------------------------
+
 @WebMvcTest(value = HelloController.class)
 @Import(SecurityTestConfiguration.class)
 @AutoConfigureDataLdap
@@ -33,31 +29,10 @@ public class HelloController3Test {
 	@Autowired
 	private MockMvc mvc;
 
-	@Autowired
-	private WebApplicationContext wac;
-	//
-	// @Autowired
-	// private FilterChainProxy springSecurityFilterChain;
-
-	// @Before
-	// public void setupMockMvc() {
-	// // this.mvc =
-	// //
-	// MockMvcBuilders.webAppContextSetup(this.wac).addFilters(this.springSecurityFilterChain).build();
-	// this.mvc =
-	// MockMvcBuilders.webAppContextSetup(this.wac).apply(springSecurity()).build();
-	// }
-
 	@Test
-	// @WithMockUser(username = "bob") // password is not evaluated
 	public void getHelloWithValidLogin() throws Exception {
-		// MockHttpServletRequestBuilder requestBuilder =
-		// MockMvcRequestBuilders.get("/")
-		// .accept(MediaType.APPLICATION_JSON);
-
 		// @formatter:off
 		mvc.perform(get("/").with(httpBasic("bob", "bobspassword")).with(csrf()))
-//		mvc.perform(get("/").with(httpBasic("ben", "benspassword")).with(csrf()))
 			.andExpect(status().isOk())
 			.andExpect(content().string(equalTo("Greetings from Spring Boot!")));
 		// @formatter:on

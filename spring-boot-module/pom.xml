@@ -10,7 +10,7 @@
 	</parent>
 
 	<artifactId>spring-boot-webmodule</artifactId>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<properties>
 		<downloadSources>true</downloadSources>
@@ -53,12 +53,12 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-starter-tomcat</artifactId>
-				</exclusion>
-			</exclusions>
+<!-- 			<exclusions> -->
+<!-- 				<exclusion> -->
+<!-- 					<groupId>org.springframework.boot</groupId> -->
+<!-- 					<artifactId>spring-boot-starter-tomcat</artifactId> -->
+<!-- 				</exclusion> -->
+<!-- 			</exclusions> -->
 		</dependency>
 
 		<!-- Spring Data REST takes the features of Spring HATEOAS and Spring Data 
@@ -68,10 +68,6 @@
 			<artifactId>spring-boot-starter-data-rest</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
@@ -89,16 +85,16 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-ldap</artifactId>
 		</dependency>
-		<!-- <dependency> -->
-		<!-- <groupId>com.unboundid</groupId> -->
-		<!-- <artifactId>unboundid-ldapsdk</artifactId> -->
-		<!-- </dependency> -->
 		<dependency>
-			<groupId>org.apache.directory.server</groupId>
-			<artifactId>apacheds-all</artifactId>
-			<version>1.5.5</version>
-			<scope>test</scope>
+			<groupId>com.unboundid</groupId>
+			<artifactId>unboundid-ldapsdk</artifactId>
 		</dependency>
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.directory.server</groupId> -->
+		<!-- <artifactId>apacheds-all</artifactId> -->
+		<!-- <version>1.5.5</version> -->
+		<!-- <scope>test</scope> -->
+		<!-- </dependency> -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
@@ -166,26 +162,32 @@
 			<!-- JsonPath: XPath for JSON. -->
 		</dependency>
 
+		<!-- <dependency> -->
+		<!-- <groupId>org.junit.platform</groupId> -->
+		<!-- <artifactId>junit-platform-launcher</artifactId> -->
+		<!-- <version>${junit-platform.version}</version> -->
+		<!-- <scope>test</scope> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.junit.platform</groupId> -->
+		<!-- <artifactId>junit-platform-engine</artifactId> -->
+		<!-- <version>${junit-platform.version}</version> -->
+		<!-- <scope>test</scope> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.junit.jupiter</groupId> -->
+		<!-- <artifactId>junit-jupiter-api</artifactId> -->
+		<!-- <scope>test</scope> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.junit.jupiter</groupId> -->
+		<!-- <artifactId>junit-jupiter-engine</artifactId> -->
+		<!-- <scope>test</scope> -->
+		<!-- </dependency> -->
+		<!-- https://mvnrepository.com/artifact/junit/junit -->
 		<dependency>
-			<groupId>org.junit.platform</groupId>
-			<artifactId>junit-platform-launcher</artifactId>
-			<version>${junit-platform.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.junit.platform</groupId>
-			<artifactId>junit-platform-engine</artifactId>
-			<version>${junit-platform.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-api</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-engine</artifactId>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
 
@@ -209,6 +211,33 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>pre-integration-test</id>
+						<goals>
+							<goal>start</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>post-integration-test</id>
+						<goals>
+							<goal>stop</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<!-- <version>3.0.0-M2</version> -->
+				<executions>
+					<execution>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
