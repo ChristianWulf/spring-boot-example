@@ -34,7 +34,7 @@ public class SecurityTestConfiguration extends WebSecurityConfigurerAdapter {
 				.passwordAttribute("userPassword")
 			.and();
 		// @formatter:on
-		LOGGER.info("Security configuration loaded.");
+		LOGGER.info("Security test configuration loaded.");
 	}
 
 	@Override

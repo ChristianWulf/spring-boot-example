@@ -9,6 +9,12 @@
 
 	<packaging>pom</packaging>
 
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.4.RELEASE</version>
+	</parent>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -20,5 +26,22 @@
 		<module>spring-boot-webmodule</module>
 		<module>spring-boot-data</module>
 		<module>spring.boot.example.ldap</module>
+		<module>spring.boot.transaction</module>
 	</modules>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<!-- <version>5.4.2</version> -->
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<!-- <version>5.4.2</version> -->
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
 </project>

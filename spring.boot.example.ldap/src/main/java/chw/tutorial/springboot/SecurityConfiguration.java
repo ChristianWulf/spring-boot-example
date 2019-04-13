@@ -14,7 +14,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 @EnableWebSecurity
 // @ImportResource("classpath:/WEB-INF/spring/security.xml")
 // @EnableLdapRepositories
-@Profile("!test")
+@Profile("default")
 class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(SecurityConfiguration.class);
