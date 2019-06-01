@@ -6,20 +6,25 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Version;
 
 @Entity
-public class Person implements Serializable {
-
-	private static final long serialVersionUID = -8516093291808125460L;
+public class PersonWithVersion implements Serializable {
+	
+	private static final long serialVersionUID = 7309355786388468637L;
 
 	@Id
 	@GeneratedValue
 	Long id;
 
+	@Version
+	@Column
+	Long version;
+
 	@Column
 	String forename;
 
-	@Column(length=8)
+	@Column(length = 8)
 	String surename;
 
 	public Long getId() {
@@ -44,6 +49,14 @@ public class Person implements Serializable {
 
 	public void setSurename(String surename) {
 		this.surename = surename;
+	}
+
+	public Long getVersion() {
+		return version;
+	}
+
+	protected void setVersion(Long version) {
+		this.version = version;
 	}
 
 }

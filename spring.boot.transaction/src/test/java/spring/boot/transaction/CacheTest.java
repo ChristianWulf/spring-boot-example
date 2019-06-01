@@ -5,6 +5,7 @@ import static org.hamcrest.Matchers.*;
 
 import java.util.List;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,10 +40,31 @@ public class CacheTest {
 		thread.join(1000);
 
 		// 3
-//		List<Person> persons = personService.findByForenameAndSurename(forename, surename);
+		// List<Person> persons = personService.findByForenameAndSurename(forename,
+		// surename);
 		List<Person> persons = personService.findAll();
 
 		assertThat(persons.get(0).getForename(), is("Christina"));
 		assertThat(persons, hasSize(1));
+	}
+
+	@Test
+	void testSingleTransaction() throws Exception {
+		String forename = "Christian";
+		String surename = "Wulf";
+
+		List<Person> persons = personService.performMultipleTransactions(forename, surename);
+
+		assertThat(persons.get(0).getForename(), is("Christian"));
+		assertThat(persons, hasSize(1));
+
+		List<Person> jdbcPersons = personService.selectPersons();
+		assertThat(jdbcPersons.get(0).getForename(), is("Christina"));
+		assertThat(jdbcPersons, hasSize(1));
+	}
+	
+	@AfterEach
+	public void afterEach() {
+		personService.deleteAll();
 	}
 }
